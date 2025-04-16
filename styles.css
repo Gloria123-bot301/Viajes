@@ -1,0 +1,271 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.menu-lateral {
+    width: 90px;
+    background: #2c3e50;
+    color: white;
+    height: 1000000vh;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.menu-lateral img {
+    width: 40px;
+    margin-bottom: 20px;
+}
+
+.menu-lateral ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-lateral li {
+    padding: 10px 5px;
+    cursor: pointer;
+}
+
+.menu-lateral li:hover {
+    background: #34495e;
+}
+
+.contenido {
+    flex-grow: 1;
+    padding: 10px;
+}
+
+.barra-superior {
+    background: #85929e;
+    color: white;
+    padding: 0px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.filtros {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background: #dee2ff;
+    border-radius: 5px;
+}
+
+.filtros label {
+    font-weight: bold;
+}
+
+button {
+    background: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+button.gris {
+    background: gray;
+}
+
+.botones {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background: #c5624e;
+    color: white;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: white;
+    width: 50%;
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.close {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.cerrar {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #555;
+}
+
+.cerrar:hover {
+    color: red;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.formulario label {
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario input,
+.formulario select,
+.formulario textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.botones {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.botones button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.verde {
+    background-color: #28a745;
+    color: white;
+}
+
+.azul {
+    background-color: #007bff;
+    color: white;
+}
+
+.gris {
+    background-color: #6c757d;
+    color: white;
+}
+
+.botones button:hover {
+    opacity: 0.8;
+}
+
+.seccion {
+    display: none;
+}
+
+
+.seccion.activa {
+    display: block;
+}
+
+.botones {
+  display: flex;
+}
+
+.button-container {
+  display: flex;
+}
+
+#configuracion {
+    display: block; 
+}
+
+#i-contrasena {
+    display: none;
+}
+
+#contenido-configuracion {
+    display: none;
+}
+
+#tablaResultados td span.verde,
+#tablaResultados td span.rojo,
+#tablaResultados td span.negro {
+    display: inline-block; 
+    width: 40px; 
+    height: 40px; 
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#tablaResultados td span.verde {
+    background-color: green; 
+}
+
+#tablaResultados td span.rojo {
+    background-color: red;    
+}
+
+#tablaResultados td span.negro {
+    background-color: black; 
+}
+
+span.rojo {
+    background-color: red;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+span.negro {
+    background-color: black;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+span.verde {
+    background-color: green;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+

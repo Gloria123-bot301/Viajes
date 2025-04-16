@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SORF - Traslados</title>
+	        <!--- CSS -->	
+    <link rel="stylesheet" href="styles.css">
+   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        (function(){
+            emailjs.init("ZOfSBn8qh_TYbfPf4"); //User ID de EmailJS
+        })();
+		
+
+    </script>
+</head>
+<body> 
+    <!-- Menú Lateral -->
+    <div class="menu-lateral">
+        <div class="logo">
+            <img src="logo.png" alt="SORF">
+        </div>
+        <div class="sidebar">
+            <button onclick="mostrarSeccion('traslados')">馃攣 Traslados</button>
+            <button onclick="mostrarSeccion('configuracion')">鈿欙笍 Sistema</button>
+        </div>
+    </div>
+
+    <div class="contenido">
+        <!-- Secci贸n Traslados -->
+        <div id="traslados" class="seccion activa">
+            <div class="barra-superior">
+                <h2>Traslados</h2>
+            </div>
+
+			<!--- Filtros Búsqueda --->
+            <div class="filtros">
+                <label>Fecha Inicio: <input type="date" id="fechaInicio"></label>
+                <label>Fecha Fin: <input type="date" id="fechaFin"></label>
+                <label>Estatus:
+                    <select id="estatus">
+                        <option value="none">None</option>
+                        <option value="creado">Creado</option>
+                        <option value="iniciado">Iniciado</option>
+                        <option value="completado">Completado</option>
+                        <option value="cancelado">Cancelado</option>
+                    </select>
+                </label>
+                <label for="Select1">Tipo B煤squeda:
+				<select id="Select1" onchange="ocultarCuadroDeTexto()">
+					<option value="ocultar">None</option>
+					<option value="mostrar">Folio</option>
+					<option value="mostrar">Transportista</option>
+					<option value="mostrar">Placas</option>
+					<option value="mostrar">Tipo Entrada</option>
+				</select>
+
+				<input type="text" id="CuadroDeTexto1" placeholder="Escribe">
+				</label>
+
+				<script>
+					document.addEventListener("DOMContentLoaded", function() {
+						ocultarCuadroDeTexto(); 
+					});
+					
+					//Oculta el cuadro de texto
+					function ocultarCuadroDeTexto() {
+						var select = document.getElementById("Select1");
+						var cuadroDeTexto = document.getElementById("CuadroDeTexto1");
+						if (select.value === "ocultar") {
+							cuadroDeTexto.style.display = "none";
+						} else {
+							cuadroDeTexto.style.display = "block";
+						}
+					}
+				</script>
+                <button onclick="buscarViajes()">馃攳 Buscar</button>
+            </div>
+
+            <br>
+            <div>
+                <input type="checkbox" id="calcular" name="Calcular Alarmas" />
+                <label for="calcular" style="font-size:20px;">Calcular Alarmas</label>
+            </div>
+            <br>
+
+            <form id="contact-form">
+                <h3>Enviar Correo</h3>
+                <input type="email" id="email" name="email" placeholder="Email" required disabled>
+                <button type="submit">Enviar</button>
+            </form>
+
+            <script>
+                // Función para habilitar/deshabilitar el correo
+                document.getElementById('calcular').addEventListener('change', function() {
+                    var emailField = document.getElementById('email');
+                    // Si el checkbox está marcado
+                    emailField.disabled = !this.checked;
+                });
+
+            </script>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Folio</th>
+                        <th>Estatus</th>
+                        <th>Fecha/Hora Inicio</th>
+                        <th>Fecha/Hora Fin</th>
+                        <th>Flete</th>
+                        <th>T. Entrada</th>
+                        <th>Transportista</th>
+                        <th>Placas</th>
+                        <th>Economico</th>
+                        <th>Viajes</th>
+                        <th>Placas Plana 1</th>
+                        <th>Placas Plana 2</th>
+                        <th>T. Operaci贸n</th>
+                        <th>Origen</th>
+						<th>Destino</th>
+                        <th>A1</th>
+						<th>A2</th>
+						<th>A3</th>
+						<th>A4</th>
+						<th>A5</th>
+						<th>Check</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaResultados">
+                    <!-- Datos generados dinámicamente desde PHP -->
+                </tbody>
+            </table>
+        </div>
+
+			<!-- Sección Configuración -->
+			<div id="configuracion" class="seccion" style="display: none;">
+				<div class="barra-superior" id="barra-superior-configuracion" style="display: none;">
+				<h2><h2>Configuraci贸n del Sistema</h2></h2>
+            </div>
+
+            <!-- Solicitud para ingresar la contrase?a -->
+            <div id="i-contrasena" style="display:none;">
+                <label for="contrasena">Password: </label>
+                <input type="password" id="contrasena" />
+                <button onclick="validarContrasena()">Acceder</button>
+            </div>
+
+            <!-- Contenido de configuración, inicialmente oculto -->
+            <div id="contenido-configuracion" style="display:none;">
+                <h3>Par谩metros de Alarma</h3>
+				<table id="tablaAlarmas">
+					<tr>
+						<th>Alarmas</th>
+						<th>M铆nimo</th>
+						<th>M谩ximo</th>
+					</tr>
+                    <tr>
+                        <td>Alarma 1</td>
+                        <td><input type="number" id="minA1"></td>
+                        <td><input type="number" id="maxA1"></td>
+                    </tr>
+                    <tr>
+                        <td>Alarma 2</td>
+                        <td><input type="number" id="minA2"></td>
+                        <td><input type="number" id="maxA2"></td>
+                    </tr>
+                    <tr>
+                        <td>Alarma 3</td>
+                        <td><input type="number" id="minA3"></td>
+                        <td><input type="number" id="maxA3"></td>
+                    </tr>
+                    <tr>
+                        <td>Alarma 4</td>
+                        <td><input type="number" id="minA4"></td>
+                        <td><input type="number" id="maxA4"></td>
+                    </tr>
+                    <tr>
+                        <td>Alarma 5</td>
+                        <td><input type="number" id="minA5"></td>
+                        <td><input type="number" id="maxA5"></td>
+                    </tr>
+                </table>
+
+				<br>
+				  <button id="btnEditar" onclick="editarConfiguracion()">
+					&#x1F4DD; <!-- ?? Editar -->
+					Editar
+				  </button>
+				</br>
+				<br>
+				  <button id="btnGuardar" onclick="guardarConfiguracion()">
+					&#x1F4BE; <!-- ?? Guardar Configuración -->
+					Guardar Configuraci贸n
+				  </button>
+				</br>
+				
+            </div>
+        </div>
+    </div>
+
+    <script src="script9.js" defer></script>
+</body>
+</html>
